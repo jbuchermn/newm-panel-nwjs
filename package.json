@@ -4,13 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-notifiers": "cd notifiers && npm run build",
-    "build-launcher": "cd launcher && npm run build",
-    "build-lock": "cd lock && npm run build",
-
-    "start-notifiers": "./start.sh notifiers",
-    "start-launcher": "./start.sh launcher",
-    "start-lock": "./start.sh lock"
+    "start": "./start.sh nowrap",
+    "start-wrapped": "./start.sh wrap"
   },
   "keywords": [],
   "author": "",
