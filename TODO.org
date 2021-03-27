@@ -1,0 +1,6 @@
+#+TITLE: newm-panel-nwjs agenda
+
+* Current (aiming for v0.1.0)
+*** DONE Move to separate repo
+*** TODO Improve visually
+*** TODO Lock: Default user / tabs to switch users, buttons to restart / shutdown / ...
