@@ -74,9 +74,10 @@
   border-radius: 2vw;
   border: solid 2px transparent;
 }
-.User:hover {
+.User.selected {
   border-color: white;
 }
+
 .User .Text {
   color: white;
   font-size: 1.5vw;

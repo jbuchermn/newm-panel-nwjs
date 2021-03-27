@@ -4,4 +4,4 @@
 *** DONE Move to separate repo
 *** DONE Clean-up installation for non-greetd usage
 *** TODO Improve visually
-*** STRT Lock: Default user / tabs to switch users
+*** DONE Lock: Default user / tabs to switch users

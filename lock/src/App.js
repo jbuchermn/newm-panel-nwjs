@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 
 
-const client = new W3CWebSocket("ws://127.0.0.1:8641");
+const client = new W3CWebSocket("ws:127.0.0.1:8641");
 
 const utilizeFocus = () => {
   const ref = React.createRef()
@@ -21,6 +21,7 @@ export default class App extends Component {
       checking: false,
       state: "choose_user",
       users: ["jonas", "root"],
+      selectedUser: "jonas",
       user: null,
       credMessage: "",
       cred: "",
@@ -28,7 +29,6 @@ export default class App extends Component {
     this.inputFocus = utilizeFocus();
   }
   componentWillMount() {
-
     client.onopen = () => {
       console.log("[WS] connected");
       client.send(JSON.stringify({ kind: "register" }));
@@ -41,7 +41,8 @@ export default class App extends Component {
         this.setState({
           checking: false,
           state: "choose_user",
-          users: msg.users
+          users: msg.users,
+          selectedUser: msg.users.length > 0 ? msg.users[0] : null
         })
       }else if (msg.kind === "auth_request_cred") {
         this.setState({
@@ -57,27 +58,58 @@ export default class App extends Component {
     };
   }
 
-  handleEnter() {
-    client.send(JSON.stringify({ 
-      kind: "auth_enter_cred",
-      cred: this.state.cred
+  componentDidMount(){
+    document.addEventListener("keydown", (evt) => this.handleKey(evt), false);
+  }
+  componentWillUnmount(){
+    document.removeEventListener("keydown", (evt) => this.handleKey(evt), false);
+  }
+
+  handleEnterCred(){
+      client.send(JSON.stringify({
+        kind: "auth_enter_cred",
+        cred: this.state.cred
+      }));
+      this.setState({
+        initial: false,
+        checking: true,
+        cred: ""
+      });
+  }
+
+  handleChooseUser() {
+    client.send(JSON.stringify({
+      kind: "auth_choose_user",
+      user: this.state.selectedUser
     }));
     this.setState({
       initial: false,
-      checking: true,
-      cred: ""
     });
   }
 
-  handleChooseUser(user) {
-    client.send(JSON.stringify({
-      kind: "auth_choose_user",
-      user
-    }));
-    this.setState({
-      initial: false,
-    });
+  handleKey(event) {
+    if(event.code === "Enter"){
+      if(this.state.state === "enter_cred"){
+        this.handleEnterCred()
+      }else if(this.state.state === "choose_user"){
+        this.handleChooseUser()
+      }
+
+      event.preventDefault()
+      event.stopPropagation()
+    }else if(event.code === "Tab"){
+      if(this.state.state === "choose_user"){
+        if(this.state.users.length > 0){
+          let idx = this.state.users.indexOf(this.state.selectedUser);
+          this.setState({ selectedUser: this.state.users[(idx+1) % this.state.users.length] });
+        }
+      }
+
+      event.preventDefault()
+      event.stopPropagation()
+    }
   }
+
 
   render() {
     return (
@@ -87,7 +119,9 @@ export default class App extends Component {
           <div className="Title">Welcome!</div>
           <div className="Users">
             {this.state.users.map(u => (
-              <div className="User" onClick={() => this.handleChooseUser(u)}>
+              <div className={"User "+(this.state.selectedUser===u?"selected":"")}
+                   onMouseEnter={() => this.setState({ selectedUser: u })}
+                   onClick={() => this.handleChooseUser()}>
                 <div className="Text">{u}</div>
               </div>
             ))}
@@ -100,8 +134,7 @@ export default class App extends Component {
           <div className="Title">{this.state.credMessage}</div>
           <input type="password" name="password" ref={this.inputFocus.ref} disabled={this.state.checking} className={"Textfield "+(this.state.checking?"checking":"")}
                  value={this.state.cred}
-                 onChange={(evt) => this.setState({ cred: evt.target.value })}
-                 onKeyDown={(evt) => evt.code === "Enter" ? this.handleEnter() : null}/>
+                 onChange={(evt) => this.setState({ cred: evt.target.value })} />
         </div>
       </div>
     );

@@ -17,7 +17,9 @@ Add the following lines to `newm/config.py`:
 panels = {
     'lock': {
         'cmd': 'npm run start -- lock',
-        'cwd': '/path/to/newm-panel-nwjs'
+        'cwd': '/path/to/newm-panel-nwjs',
+        'w': 1.0,
+        'h': 1.0
     },
     'launcher': {
         'cmd': 'npm run start -- launcher',
@@ -48,7 +50,9 @@ The corresponding configuration is:
 panels = {
     'lock': {
         'cmd': 'npm run start-wrapped -- lock',
-        'cwd': '/usr/lib/node_modules/newm-panel-nwjs'
+        'cwd': '/usr/lib/node_modules/newm-panel-nwjs',
+        'w': 1.0,
+        'h': 1.0
     },
     'launcher': {
         'cmd': 'npm run start-wrapped -- launcher',
