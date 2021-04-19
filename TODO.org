@@ -3,5 +3,8 @@
 * Current (aiming for v0.1.0)
 *** DONE Move to separate repo
 *** DONE Clean-up installation for non-greetd usage
-*** TODO Improve visually
 *** DONE Lock: Default user / tabs to switch users
+
+* Backlog
+*** Improve visually
+*** Panel for top / bottom bar / settings (like WiFi ...)
