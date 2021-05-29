@@ -1,5 +1,7 @@
 # newm-panel-nwjs
 
+Alternative, NW.js-based panels for [newm](https://github.com/jbuchermn/newm)
+
 ## For same user / without root access
 
 ```sh
