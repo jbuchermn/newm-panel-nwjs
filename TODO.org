@@ -4,8 +4,8 @@
 *** DONE Move to separate repo
 *** DONE Clean-up installation for non-greetd usage
 *** DONE Lock: Default user / tabs to switch users
-*** TODO Test as login-shell
-*** TODO README / Installation instructions / Screenshots
+*** STRT Test as login-shell
+*** STRT README / Installation instructions / Screenshots
 
 * Backlog
 *** Improve visually
