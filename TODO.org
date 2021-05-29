@@ -1,9 +1,6 @@
 #+TITLE: newm-panel-nwjs agenda
 
-* Current (aiming for v0.1.0)
-*** DONE Move to separate repo
-*** DONE Clean-up installation for non-greetd usage
-*** DONE Lock: Default user / tabs to switch users
+* Current
 *** STRT Test as login-shell
 *** STRT README / Installation instructions / Screenshots
 
