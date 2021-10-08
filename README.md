@@ -37,7 +37,7 @@ panels = {
 
 ## For all users (for setup with greetd)
 
-The default installation mechanism of `npm` employs symlinks which probably leads o access issues for user `greeter`.
+The default installation mechanism of `npm` employs symlinks which probably leads to access issues for user `greeter`.
 Also there are some `nw` issues in a global installation. This hack works for now (careful!):
 
 ```sh
