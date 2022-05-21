@@ -1,5 +1,7 @@
 # newm-panel-nwjs
 
+Discountinued! No longer supported in newm v0.3.
+
 Alternative, NW.js-based panels for [newm](https://github.com/jbuchermn/newm)
 
 ## For same user / without root access
